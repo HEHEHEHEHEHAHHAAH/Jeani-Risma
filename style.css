@@ -1,0 +1,173 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a1a1a;
+    margin: 0;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    color: #fff;
+    overflow: hidden;
+}
+
+.ghost-cat {
+    position: relative;
+    width: 350px;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.ghost {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    animation: ghostFloat 3s infinite ease-in-out;
+    text-align: center;
+}
+
+#ghostText {
+    font-size: 18px;
+    color: #ffccff;
+    margin-top: 10px;
+}
+
+@keyframes ghostFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+.ghost.move-up {
+    animation: moveUp 1s forwards;
+}
+
+@keyframes moveUp {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: -300px;
+    }
+}
+
+.letter {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    height: 200px;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    transform: rotateX(-90deg);
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease;
+    opacity: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.letter.show {
+    transform: rotateX(0);
+    opacity: 1;
+    animation: letterGlow 0.6s ease;
+}
+
+@keyframes letterGlow {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.letter h2 {
+    margin: 0;
+    color: #ffccff;
+}
+
+.letter p {
+    margin: 5px 0;
+    color: #fff;
+    font-size: 16px;
+}
+
+.letter p:last-child {
+    margin-top: 20px;
+}
+
+.sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.sparkles::before, .sparkles::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffccff;
+    border-radius: 50%;
+    animation: sparkle 1.5s infinite ease-in-out;
+}
+
+.sparkles::after {
+    background-color: #ffffff;
+    animation-delay: 0.75s;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100vh) scale(0);
+        opacity: 1;
+    }
+}
+
+.ghost-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 20%, transparent 50%);
+    animation: ghostEffect 2s infinite ease-in-out;
+}
+
+@keyframes ghostEffect {
+    0% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+}
